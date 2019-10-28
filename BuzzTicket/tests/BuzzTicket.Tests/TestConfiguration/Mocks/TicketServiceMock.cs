@@ -1,8 +1,8 @@
 ﻿using BuzzTicket.Domain.TicketAgg;
 using BuzzTicket.Domain.TicketAgg.Contracts;
 using BuzzTicket.Domain.TicketAgg.Services;
-using Moq;
 using System.Collections.Generic;
+using Moq;
 
 namespace BuzzTicket.Tests.TestConfiguration.Mocks
 {

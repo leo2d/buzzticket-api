@@ -2,6 +2,7 @@
 using BuzzTicket.Tests.TestConfiguration.Builders;
 using BuzzTicket.Tests.TestConfiguration.Mocks;
 using FluentAssertions;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
@@ -18,9 +19,9 @@ namespace BuzzTicket.Tests.Domain.Services
             _serviceMock = new TicketServiceMock();
         }
 
-        [Theory]
+        [Theory(DisplayName = "Buscar Tickets Ordenados Por Maior Data - Suscesso ")]
         [MemberData(nameof(TestData))]
-        public async Task BuscarBuscarTicketsOrdenadosPorMaiorDataSuscessoTests(IEnumerable<Ticket> tickets, int quantidade)
+        public async Task BuscarTicketsOrdenadosPorMaiorDataSuscesso(IEnumerable<Ticket> tickets, int quantidade)
         {
             #region Given
 
@@ -43,7 +44,33 @@ namespace BuzzTicket.Tests.Domain.Services
             result.Should().NotBeNull();
 
             #endregion
+        }
 
+        [Fact(DisplayName = "Buscar Tickets Ordenados Por Maior Data - Numero Negativo ")]
+        public async Task BuscarTicketsOrdenadosPorMaiorDataErroNumeroNegativo()
+        {
+            int quantidade = -1;
+            var tickets = TicketBuilder.Build(1);
+
+            #region Given
+
+            var service = _serviceMock
+                .MockBuscarTicketsOrdenadosPorMaiorData(tickets: tickets, quantidade: quantidade)
+                .Resolve();
+
+            #endregion
+
+            #region When
+
+            Func<Task> action = async () => await service.BuscarTicketsOrdenadosPorMaiorData(quantidade);
+
+            #endregion
+
+            #region Then
+
+            await action.Should().ThrowAsync<ArgumentOutOfRangeException>();
+
+            #endregion
         }
 
         public static IEnumerable<object[]> TestData => new List<object[]>()
@@ -61,5 +88,7 @@ namespace BuzzTicket.Tests.Domain.Services
                 TicketBuilder.Build(20), 20
             },
         };
+
+
     }
 }

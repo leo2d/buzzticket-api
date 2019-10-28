@@ -37,6 +37,8 @@ namespace BuzzTicket.Domain.TicketAgg.Services
 
         public async Task<IEnumerable<Ticket>> BuscarTicketsOrdenadosPorMaiorData(int quantidade)
         {
+            if (quantidade < 1) throw new ArgumentOutOfRangeException(nameof(quantidade));
+
             var resultado = await _ticketRepository.BuscarTicketsOrdenadosPorMaiorData(quantidade);
             return resultado;
         }
