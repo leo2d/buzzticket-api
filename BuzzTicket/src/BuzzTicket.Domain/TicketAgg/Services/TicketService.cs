@@ -19,7 +19,7 @@ namespace BuzzTicket.Domain.TicketAgg.Services
 
         public async Task AtualizarTicket(Ticket ticket)
         {
-            await _ticketRepository.Atualizar(ticket);
+            _ticketRepository.Atualizar(ticket);
             await _unitOfWork.Commit();
         }
 
