@@ -43,6 +43,18 @@ namespace BuzzTicket.Api.Controllers
             return Ok(resultado);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> BuscarPorId(Guid id)
+        {
+            if (id == null || id == Guid.Empty) return BadRequest("O id informados é inválido");
+
+            var ticket = await _ticketService.BuscarTicket(id);
+
+            var resultado = _mapper.Map<TicketViewModel>(ticket);
+
+            return Ok(resultado);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Criar([FromBody] TicketViewModel ticketViewModel)
         {
