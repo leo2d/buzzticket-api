@@ -1,3 +1,5 @@
+using BuzzTicket.Api.Configurations;
+using BuzzTicket.Infra.Data.Config;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,12 +23,14 @@ namespace BuzzTicket.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDIConfiguration(Configuration);
+            services.AddAutoMapper();
 
             //ConfigureSwaggerService(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, DataContext context)
         {
             if (env.IsDevelopment())
             {
@@ -43,6 +47,8 @@ namespace BuzzTicket.Api
             {
                 endpoints.MapControllers();
             });
+
+            DBInitialize.Initialize(context: context);
 
             //ConfigureSwagger(app, env);
 

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BuzzTicket.Infra.Data.Mapping
 {
@@ -14,8 +13,9 @@ namespace BuzzTicket.Infra.Data.Mapping
 
             builder.HasKey(e => e.Id);
 
-            builder.Property(e => e.Id)
-                .HasDefaultValueSql("NEWID()");
+            builder.Property(e => e.Id);
+               // .HasDefaultValueSql("uuid()");
+
 
             builder.Property(e => e.Solicitante)
                 .IsRequired()
@@ -36,7 +36,7 @@ namespace BuzzTicket.Infra.Data.Mapping
             builder.Property(e => e.Data)
                 .IsRequired()
                 .HasColumnType("date")
-                .HasDefaultValueSql("(getdate())")
+                .HasDefaultValueSql("now()")
                 .HasColumnName("Data");
 
         }

@@ -13,13 +13,20 @@ namespace BuzzTicket.Infra.CrossCutting.IoC
     {
         public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<DataContext>(options =>
-                    options.UseMySQL(configuration.GetConnectionString("ConnectionStrings:MySql")));
+            RegisterContexts(services, configuration);
 
-            services.AddTransient<IUnitOfWork, UnitOfWork>();
-            
+            services.AddScoped<DataContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddTransient<ITicketService, TicketService>();
             services.AddTransient<ITicketRepository, TicketRepository>();
+        }
+
+        private static void RegisterContexts(IServiceCollection services, IConfiguration configuration)
+        {
+            var connectionString = configuration["ConnectionStrings:MySql"];
+            services.AddDbContext<DataContext>(options =>
+                    options.UseMySql(connectionString));
         }
     }
 }
