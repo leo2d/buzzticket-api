@@ -14,7 +14,7 @@ namespace BuzzTicket.Infra.CrossCutting.IoC
         public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DataContext>(options =>
-                    options.UseMySQL(configuration.GetConnectionString("ConnectionStrings:MySqlConnectionString")));
+                    options.UseMySQL(configuration.GetConnectionString("ConnectionStrings:MySql")));
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
             
