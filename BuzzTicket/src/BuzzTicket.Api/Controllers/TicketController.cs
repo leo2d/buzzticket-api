@@ -43,7 +43,7 @@ namespace BuzzTicket.Api.Controllers
             return Ok(resultado);
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> BuscarPorId(Guid id)
         {
             if (id == null || id == Guid.Empty) return BadRequest("O id informados é inválido");

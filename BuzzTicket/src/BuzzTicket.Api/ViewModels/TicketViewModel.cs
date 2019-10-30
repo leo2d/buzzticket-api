@@ -5,7 +5,7 @@ namespace BuzzTicket.Api.ViewModels
 {
     public class TicketViewModel
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         public bool Aberto { get; set; }
 
         [Required]

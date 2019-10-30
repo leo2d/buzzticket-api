@@ -1,6 +1,8 @@
 ﻿using BuzzTicket.Domain.SharedKernel.Interfaces;
 using BuzzTicket.Infra.Data.Config;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BuzzTicket.Infra.Data.Repositories
@@ -16,7 +18,7 @@ namespace BuzzTicket.Infra.Data.Repositories
 
         public async Task Commit()
         {
-           await _context.SaveChangesAsync().ConfigureAwait(false);
+            await _context.SaveChangesAsync().ConfigureAwait(false);
         }
 
         public void Dispose()
