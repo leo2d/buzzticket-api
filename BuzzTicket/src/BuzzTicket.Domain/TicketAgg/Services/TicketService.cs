@@ -31,8 +31,6 @@ namespace BuzzTicket.Domain.TicketAgg.Services
 
         public async Task<IEnumerable<Ticket>> BuscarTickets()
         {
-            throw new Exception("testeee");
-
             var resultado = await _ticketRepository.BuscarTodos();
             return resultado;
         }

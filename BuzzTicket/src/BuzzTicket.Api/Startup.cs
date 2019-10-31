@@ -27,6 +27,8 @@ namespace BuzzTicket.Api
             services.AddAutoMapper();
 
             ConfigureSwaggerService(services);
+
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +38,12 @@ namespace BuzzTicket.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors(builder => builder
+                   .AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader()
+                   );
 
             app.UseHttpsRedirection();
 
@@ -53,7 +61,6 @@ namespace BuzzTicket.Api
             app.UseProblemDetailsExceptionHandler(loggerFactory);
 
             ConfigureSwagger(app, env);
-
         }
 
         private void ConfigureSwaggerService(IServiceCollection services)
