@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BuzzTicket.Domain\BuzzTicket.Domain.csproj" />
     <ProjectReference Include="..\BuzzTicket.Infra.CrossCutting.IoC\BuzzTicket.Infra.CrossCutting.IoC.csproj" />
+    <ProjectReference Include="..\BuzzTicket.Infra.Data\BuzzTicket.Infra.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
