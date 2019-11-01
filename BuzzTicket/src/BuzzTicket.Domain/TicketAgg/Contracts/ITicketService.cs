@@ -11,6 +11,6 @@ namespace BuzzTicket.Domain.TicketAgg.Contracts
         Task ExcluirTicket(Guid Id);
         Task<Ticket> BuscarTicket(Guid id);
         Task<IEnumerable<Ticket>> BuscarTickets();
-        Task<IEnumerable<Ticket>> BuscarTickets(int quantidade);
+        Task<IEnumerable<Ticket>> BuscarTicketsOrdenadosPorMaiorData(int quantidade);
     }
 }

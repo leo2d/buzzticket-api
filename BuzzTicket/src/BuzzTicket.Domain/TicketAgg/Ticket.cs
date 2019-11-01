@@ -9,5 +9,6 @@ namespace BuzzTicket.Domain.TicketAgg
         public DateTime Data { get; set; }
         public bool Aberto { get; set; }
         public string Solicitacao { get; set; }
+
     }
 }
