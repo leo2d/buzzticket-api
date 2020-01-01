@@ -11,6 +11,9 @@
 
 dotnet-restore
 
-4 - Run this project using the command below:
+4 - Run this project using the command below: **
 
 dotnet run
+
+
+** Make sure you have installed .Net Core SDK 3.0 or later
